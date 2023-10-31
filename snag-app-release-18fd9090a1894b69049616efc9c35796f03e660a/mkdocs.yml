@@ -1,0 +1,23 @@
+site_name: SNaG-app
+site_url: https://orbitdynamics.gitlab.io/snag-app
+site_author: Liam M. Healy
+copyright: ©2023 Liam M. Healy, all rights reserved
+site_dir: public
+nav:
+  - Home: index.md
+  - Orbits:
+      - Propagation: 'propagation.md'
+      - 'Orbit determination': 'estimation.md'
+      - Observations : 'observations.md'
+      - Conjunction : 'conjunction.md'
+  - Data:
+      - Satellites: 'spacetrack.md'
+      - 'Solar system (Horizons)': 'horizons.md'
+      - 'Solar system (USNO for sidereal time)': 'siderealtime.md'
+  - Utility:
+      - Location: 'location.md'
+      - 'State and ephemeris': 'ephemeris.md'
+      - Elements : 'elements.md'
+      - 'Date and time': 'datetime.md'
+      - Timetable: 'timetable.md'
+  - Index: function-index.md

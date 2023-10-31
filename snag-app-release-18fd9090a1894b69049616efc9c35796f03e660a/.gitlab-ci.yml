@@ -1,0 +1,44 @@
+image: python:3.8-buster
+
+before_script:
+  - pip install -r docs/requirements.txt
+
+test:
+  stage: test
+  script:
+  - mkdocs build --strict --verbose --site-dir test
+  artifacts:
+    paths:
+    - test
+  except:
+  - master
+
+pages:
+  stage: deploy
+  script:
+  - mkdocs build --strict --verbose
+  artifacts:
+    paths:
+    - public
+  only:
+  - release
+
+# See https://stackoverflow.com/a/58402821/238405
+# Makes the development branches available; unfortunately, it only makes index.html available, the other pages give a JSON error "insufficient_scope"
+# The second answer might be better.
+develop:
+    artifacts:
+        paths:
+          - public
+
+    environment:
+        name: Develop
+        url: "https://$CI_PROJECT_NAMESPACE.gitlab.io/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/public/index.html"
+
+    script:
+    - mkdocs build --strict --verbose
+
+    stage: deploy
+
+    variables:
+        PUBLIC_URL: "/-/$CI_PROJECT_NAME/-/jobs/$CI_JOB_ID/artifacts/public"

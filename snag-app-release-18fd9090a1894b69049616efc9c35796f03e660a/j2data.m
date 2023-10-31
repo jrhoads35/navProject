@@ -1,0 +1,1 @@
+j2_orbit = propagate(oe, true, hours(24), 180, force_model(2, 0))
